@@ -1,0 +1,93 @@
+{
+  "name": "checko",
+  "version": "0.0.0",
+  "private": true,
+  "main": "build/app.js",
+  "watch": {
+    "build": {
+      "patterns": [
+        "./*"
+      ],
+      "extensions": "ts",
+      "quiet": false
+    },
+    "build-views": {
+      "patterns": [
+        "./*"
+      ],
+      "ignore": "build",
+      "extensions": "ejs,scss,js,png,jpg",
+      "quiet": false
+    }
+  },
+  "scripts": {
+    "exec": "exec",
+    "test": "xo",
+    "dashboard": "DEBUG=app:* node build/app.js",
+    "build": "./build.sh || exit 1",
+    "build-views": "./build-views.sh || exit 1",
+    "console": "node ./build/console.js"
+  },
+  "dependencies": {
+    "aes-js": "^3.1.0",
+    "body-parser": "~1.18.2",
+    "colors": "^1.1.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "ejs-layouts": "^0.0.1",
+    "express": "^4.17.1",
+    "formidable": "^1.2.1",
+    "mysql": "^2.15.0",
+    "node-fetch": "^2.6.0",
+    "node-sass-middleware": "0.11.0",
+    "scrypt": "^6.0.3",
+    "serve-favicon": "~2.4.5",
+    "stripe": "^7.4.0",
+    "uglify-es": "^3.3.9"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/express": "^4.17.0",
+    "@types/mysql": "^2.15.6",
+    "@types/node": "^12.6.9",
+    "@types/node-fetch": "^2.5.2",
+    "@types/stripe": "^6.31.4",
+    "node-gyp": "^3.6.2",
+    "npm-watch": "^0.6.0",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "space": true,
+    "envs": [
+      "browser",
+      "jquery"
+    ],
+    "rules": {
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "camelcase": 1,
+      "brace-style": 0,
+      "no-prototype-builtins": 0,
+      "dot-notation": 0,
+      "linebreak-style": "off",
+      "comma-dangle": "off",
+      "no-eq-null": "off",
+      "eqeqeq": [
+        "error",
+        "smart"
+      ],
+      "unicorn/filename-case": "off",
+      "no-restricted-modules": "off",
+      "no-use-extend-native/no-use-extend-native": "off",
+      "unicorn/catch-error-name": "off",
+      "no-new": "off",
+      "no-alert": "off"
+    }
+  }
+}

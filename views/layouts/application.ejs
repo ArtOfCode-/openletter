@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dear Stack Exchange, Inc.</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Open+Sans:400,400i,600|Fira+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="#" id="dark-sheet" />
+
+    <script type="application/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="application/javascript" src="/javascripts/application.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-inner col-xl-6 col-lg-8 col-md-10 col-sm-12 offset-xl-3 offset-lg-2 offset-md-1">
+            <div class="color-mode-toggle" title="Toggle light/dark mode"></div>
+        </div>
+    </header>
+    <div class="content-container col-xl-6 col-lg-8 col-md-10 col-sm-12 offset-xl-3 offset-lg-2 offset-md-1">
+        <aside>
+            <i class="fas fa-info-circle"></i>
+            <p>
+                What follows is an open letter to Stack Exchange, Inc., from the remaining moderators there. While it was catalysed by recent events,
+                it's not solely about them - it's more generally about the direction of stepping away from the community that Stack Exchange has appeared
+                to be taking recently. This letter is signed by a number of moderators already, but you're welcome to sign in support - please see the
+                bottom of the page.
+            </p>
+        </aside>
+        <!--<aside class="danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>
+                Just in case it's not clear: <strong>we're not Stack Exchange</strong>. This is not an official position of the company, and the sentiments
+                expressed herein are not those of the company.
+            </p>
+        </aside>-->
+        <main>
+            <%- content %>
+        </div>
+    </div>
+</body>
+</html>

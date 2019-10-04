@@ -1,0 +1,23 @@
+<section class="signatories">
+    <h5>
+        We, the undersigned, support the sentiments expressed in this letter, and join with its authors in asking that Stack Overflow take steps
+        towards fostering community spirit once again.
+    </h5>
+
+    <div class="signatory-panel">
+        <% signatories.forEach(sig => { %>
+            <p>
+                <a href="https://stackexchange.com/users/<%= sig.se_acct_id %>">
+                    <%= sig.display_name %>
+                    <% if (sig.is_moderator) { %>
+                        &diams;
+                    <% } %>
+                </a><br/>
+                <small class="text-muted"><%= strftime(new Date(Date.parse(sig.created_at)), '%b %e') %></small>
+            </p>
+        <% }); %>
+    </div>
+    <div class="expand">
+        <a class="js-expand-signatories" href="#">Expand all <%= signatories.length %>&darr;</a>
+    </div>
+</section>

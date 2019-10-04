@@ -1,0 +1,8 @@
+config/config.ts
+build/config/config.js
+.idea
+node_modules/
+bin/
+build/
+.vscode
+TODO

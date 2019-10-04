@@ -1,0 +1,23 @@
+<section class="signing">
+    <form method="POST" action="/sign">
+        <h1>Add your voice</h1>
+        <p>If you support the sentiments we've expressed in this letter, you can sign it too to demonstrate your support.</p>
+    
+        <div class="form-group">
+            <label for="display-name">Display name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" name="display_name" id="display-name" required />
+            <small class="form-text text-muted">Please enter your name as you wish it to appear in your signature. <strong>This will be public.</strong></small>
+        </div>
+    
+        <button type="submit" class="btn btn-block btn-primary">Sign</button>
+
+        <aside class="mt-4 danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>
+                When you click Sign, you will be taken to authenticate with your Stack Exchange account. This allows us to make sure
+                everyone is only able to sign once. Once authentication is complete, your access token is discarded and no access to your
+                account is possible.
+            </p>
+        </aside>
+    </form>
+</section>

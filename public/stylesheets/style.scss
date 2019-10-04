@@ -1,0 +1,177 @@
+body {
+    background: #EEE;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11pt;
+}
+
+small {
+    font-size: 10pt;
+}
+
+.color-mode-toggle {
+    background: #444;
+    border: 1px solid white;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+header {
+    background-color: #17a7db;
+    background-image: url('https://cdn.sstatic.net/Sites/stackexchangemeta/img/background.svg');
+    background-position: center left;
+    background-repeat: repeat;
+    background-size: auto;
+
+    .header-inner {
+        background-color: transparent;
+        background-image: url('https://cdn.sstatic.net/Sites/stackexchangemeta/img/icon-cloud-footer@2.png');
+        background-position: bottom -68px right;
+        background-repeat: no-repeat;
+        background-size: 475px;
+        padding: 3em 2em;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.content-container {
+    padding: 0 !important;
+}
+
+.content-container:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 0 0.5em #d0cec8;
+    z-index: -1;
+}
+
+aside {
+    color: #737063;
+    background: #FFF8DC;
+    padding: 1em 2em 1em 1em;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6dfc6;
+
+    p {
+        font-size: 0.9em;
+        margin-bottom: 0;
+        margin-left: 1em;
+    }
+}
+
+aside.danger {
+    color: #736464;
+    background: #ffdbdb;
+    border-bottom: 1px solid #e6c6c6;
+}
+
+main {
+    background: white;
+    padding: 1em 2em 5em 2em;
+}
+
+section {
+    margin: 1em 0;
+}
+
+section.letter {
+    max-width: 600px;
+    margin: 0 auto;
+
+    h1 {
+        color: #17a7db;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 28pt;
+        font-weight: 500;
+        letter-spacing: -1px;
+    }
+
+    h2 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14pt;
+        font-weight: 600;
+        color: #17a7db;
+    }
+
+    p {
+        font-size: 11pt;
+    }
+}
+
+label {
+    font-weight: bold;
+}
+
+section.signatories {
+    h5 {
+        font-family: 'Open Sans';
+        font-style: italic;
+        color: #555;
+        margin: 0.5em 0 1em 0;
+    }
+
+    .expand {
+        text-align: center;
+        font-weight: bold;
+
+        a {
+            display: inline-block;
+            border: 1px solid #DDD;
+            border-top: 1px solid white;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            margin: -1px auto 0 auto;
+            width: 12em;
+        }
+    }
+}
+
+.signatory-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 40em;
+    overflow-y: scroll;
+    border-bottom: 1px solid #DDD;
+    @media screen and (min-width: 576px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (min-width: 768px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (min-width: 992px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media screen and (min-width: 1200px) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    p {
+        display: block;
+        transition: all 0.2s ease;
+        padding: 0.5em;
+        border-radius: 4px;
+        line-height: 1;
+        margin-bottom: 0.5em;
+
+        &:hover {
+            background: #EEE;
+        }
+    }
+}
+
+section.signing {
+    h1 {
+        font-size: 28pt;
+    }
+}
