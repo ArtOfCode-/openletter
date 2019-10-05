@@ -10,7 +10,10 @@
                 <a href="https://stackexchange.com/users/<%= sig.se_acct_id %>">
                     <%= sig.display_name %>
                     <% if (sig.is_moderator) { %>
-                        &diams;
+                        <span title="moderator">&diams;</span>
+                    <% } %>
+                    <% if (sig.is_former_moderator) { %>
+                        <span title="former moderator">&loz;</span>
                     <% } %>
                 </a><br/>
                 <small class="text-muted"><%= strftime(new Date(Date.parse(sig.created_at)), '%b %e') %></small>

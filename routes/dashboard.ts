@@ -10,7 +10,7 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 export default (pool: mt.Pool, log): express.Router => {
     router.get('/', async (req: express.Request, res: ResponseWithLayout) => {
-        const signatories = await Signatory.order('is_moderator DESC, RAND()', '', true).get();
+        const signatories = await Signatory.where('se_acct_id IS NOT NULL').order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
         render(req, res, 'dashboard/dash', {signatories}, {pool});
     });
 

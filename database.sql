@@ -28,6 +28,7 @@ create table if not exists `signatories` (
     `se_acct_id` bigint,
     `display_name` varchar(255),
     `is_moderator` tinyint(1) not null default 0,
+    `is_former_moderator` tinyint(1) not null default 0,
     `created_at` datetime not null default current_timestamp,
     `updated_at` datetime not null default current_timestamp,
 
