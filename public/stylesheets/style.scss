@@ -8,6 +8,13 @@ small {
     font-size: 10pt;
 }
 
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28pt;
+    font-weight: 500;
+    letter-spacing: -1px;
+}
+
 .color-mode-toggle {
     background: #444;
     border: 1px solid white;
@@ -83,15 +90,11 @@ section {
 }
 
 section.letter {
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
 
     h1 {
         color: #17a7db;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 28pt;
-        font-weight: 500;
-        letter-spacing: -1px;
     }
 
     h2 {

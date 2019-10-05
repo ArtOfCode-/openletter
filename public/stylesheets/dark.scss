@@ -13,7 +13,7 @@ main {
 }
 
 .content-container:after {
-    box-shadow: 0 0 0.5em #5b584d;
+    box-shadow: 0 0 0.5em #111;
 }
 
 section.signatories h5 {
@@ -22,4 +22,22 @@ section.signatories h5 {
 
 .signatory-panel p:hover {
     background: #444;
+}
+
+.text-muted {
+    color: #8f979e !important;
+}
+
+a {
+    color: #3396ff !important;
+}
+
+.btn-primary {
+    background: #3396ff !important;
+    border-color: #3396ff !important;
+}
+
+input[type="text"] {
+    background: #666;
+    color: white;
 }

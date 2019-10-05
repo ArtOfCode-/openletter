@@ -1,5 +1,6 @@
 $(() => {
     let expanded = false;
+    let text;
 
     $('.js-expand-signatories').on('click', evt => {
         evt.preventDefault();
@@ -8,9 +9,10 @@ $(() => {
                 'max-height': '30em',
                 'overflow-y': 'scroll'
             });
-            $(evt.target).html('Expand &darr;');
+            $(evt.target).html(text);
         }
         else {
+            text = $(evt.target).html();
             $('.signatory-panel, .shadow').css({
                 'max-height': 'unset',
                 'overflow-y': 'hidden'
