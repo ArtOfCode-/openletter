@@ -107,6 +107,10 @@ section.letter {
     p {
         font-size: 11pt;
     }
+
+    p.date {
+        margin-top: 1rem;
+    }
 }
 
 label {
@@ -178,5 +182,10 @@ section.signing {
 
     h1 {
         font-size: 28pt;
+    }
+
+    button.btn-primary {
+        background: #17a7db;
+        border-color: #17a7db;
     }
 }
