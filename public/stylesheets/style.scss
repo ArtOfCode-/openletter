@@ -144,7 +144,7 @@ section.signatories {
 .signatory-panel {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    max-height: 40em;
+    max-height: 25em;
     overflow-y: scroll;
     border-bottom: 1px solid #DDD;
     @media screen and (min-width: 576px) {
