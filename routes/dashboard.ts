@@ -5,12 +5,15 @@ import {render, error} from '../render_helpers';
 import config from '../config/config';
 import {Signatory} from '../models/signatory';
 import {ResponseWithLayout} from '../definitions';
+import * as crypto from 'crypto';
 const fetch = require('node-fetch');
 const router = express.Router(); // eslint-disable-line new-cap
 
 export default (pool: mt.Pool, log): express.Router => {
     router.get('/', async (req: express.Request, res: ResponseWithLayout) => {
         const signatories = await Signatory.where('se_acct_id IS NOT NULL').order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
+        const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('letterVersion')}-${signatories.length}`).digest('hex');
+        res.setHeader('ETag', etag);
         render(req, res, 'dashboard/dash', {signatories}, {pool});
     });
 
