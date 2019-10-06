@@ -19,6 +19,10 @@ export default (pool: mt.Pool, log): express.Router => {
 
     router.post('/sign', async (req: express.Request, res: ResponseWithLayout) => {
         const displayName = req.body['display_name'] || null;
+        if (displayName.indexOf('♦') !== -1) {
+            error(req, res, 'You may not use the ♦ character in your display name.', pool);
+            return;
+        }
         const signatory: Signatory = await <Promise<Signatory>>Signatory.create({display_name: displayName});
         res.redirect(`https://stackoverflow.com/oauth?client_id=${config.getSiteSetting('clientId')}&scope=&state=${signatory.id}&redirect_uri=${config.getSiteSetting('redirectUri')}`);
     });
