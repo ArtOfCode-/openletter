@@ -7,7 +7,7 @@
     <div class="signatory-panel">
         <% signatories.forEach(sig => { %>
             <p>
-                <a href="https://stackexchange.com/users/<%= sig.se_acct_id %>?tab=accounts">
+                <a href="https://stackexchange.com/users/<%= sig.se_acct_id %>?tab=accounts" rel="noopener noreferrer" target="_blank">
                     <%= sig.display_name %>
                     <% if (sig.is_moderator) { %>
                         <span title="moderator">&diams;</span>
