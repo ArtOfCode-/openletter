@@ -24,7 +24,7 @@ export default (pool: mt.Pool, log): express.Router => {
             return;
         }
         const signatory: Signatory = await <Promise<Signatory>>Signatory.create({display_name: displayName});
-        res.redirect(`https://stackoverflow.com/oauth?client_id=${config.getSiteSetting('clientId')}&scope=&state=${signatory.id}&redirect_uri=${config.getSiteSetting('redirectUri')}`);
+        res.redirect(`https://stackexchange.com/oauth?client_id=${config.getSiteSetting('clientId')}&scope=&state=${signatory.id}&redirect_uri=${config.getSiteSetting('redirectUri')}`);
     });
 
     router.get('/auth-redirect', async (req: express.Request, res: ResponseWithLayout) => {
@@ -40,7 +40,7 @@ export default (pool: mt.Pool, log): express.Router => {
         const key = config.getSiteSetting('key');
 
         try {
-            const resp = await fetch('https://stackoverflow.com/oauth/access_token/json', {
+            const resp = await fetch('https://stackexchange.com/oauth/access_token/json', {
                 method: 'POST',
                 body: params
             });
