@@ -36,7 +36,7 @@ header {
         background-position: bottom -68px right;
         background-repeat: no-repeat;
         background-size: 475px;
-        padding: 3em 2em;
+        padding: 2em;
         font-family: 'Montserrat', sans-serif;
         color: white;
         display: flex;
@@ -108,6 +108,10 @@ section.letter {
         font-size: 11pt;
     }
 
+    aside p {
+        font-size: 10pt;
+    }
+
     p.date {
         margin-top: 1rem;
     }
@@ -159,7 +163,7 @@ section.signatories {
         grid-template-columns: repeat(5, 1fr);
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1378px) {
         grid-template-columns: repeat(6, 1fr);
     }
 
