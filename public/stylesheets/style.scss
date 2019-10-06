@@ -193,3 +193,27 @@ section.signing {
         border-color: #17a7db;
     }
 }
+
+@media print {
+    section.signing {
+        display: none;
+    }
+
+    section.signatories {
+        page-break-inside: avoid;
+
+        .signatory-panel {
+            grid-template-columns: repeat(4, 1fr);
+            max-height: unset;
+            overflow-y: hidden;
+        }
+
+        .expand {
+            display: none;
+        }
+    }
+
+    .content-container > aside {
+        display: none;
+    }
+}
