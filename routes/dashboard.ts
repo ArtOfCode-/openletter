@@ -11,25 +11,35 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 export default (pool: mt.Pool, log): express.Router => {
     router.get('/', async (req: express.Request, res: ResponseWithLayout) => {
-        const signatories = await Signatory.where('se_acct_id IS NOT NULL').order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
+        const signatories = await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'main'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
         const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('letterVersion')}-${signatories.length}`).digest('hex');
         res.setHeader('ETag', etag);
         render(req, res, 'dashboard/dash', {signatories}, {pool});
     });
 
+    router.get('/lavender', async (req: express.Request, res: ResponseWithLayout) => {
+        const signatories = await Signatory.where(`se_acct_id IS NOT NULL AND letter = 'lavender'`).order('is_moderator DESC, is_former_moderator DESC, RAND()', '', true).get();
+        const etag = crypto.createHash('sha256').update(`${config.getSiteSetting('lavenderVersion')}-${signatories.length}`).digest('hex');
+        res.setHeader('ETag', etag);
+        render(req, res, 'dashboard/lavender', {signatories}, {pool});
+    });
+
     router.post('/sign', async (req: express.Request, res: ResponseWithLayout) => {
         const displayName = req.body['display_name'] || null;
+        const letter = req.body['letter'] || 'main';
         if (displayName.indexOf('♦') !== -1) {
             error(req, res, 'You may not use the ♦ character in your display name.', pool);
             return;
         }
-        const signatory: Signatory = await <Promise<Signatory>>Signatory.create({display_name: displayName});
-        res.redirect(`https://stackexchange.com/oauth?client_id=${config.getSiteSetting('clientId')}&scope=&state=${signatory.id}&redirect_uri=${config.getSiteSetting('redirectUri')}`);
+        const signatory: Signatory = await <Promise<Signatory>>Signatory.create({display_name: displayName, letter});
+        res.redirect(`https://stackexchange.com/oauth?client_id=${config.getSiteSetting('clientId')}&scope=&state=${signatory.id}|${letter}&redirect_uri=${config.getSiteSetting('redirectUri')}`);
     });
 
     router.get('/auth-redirect', async (req: express.Request, res: ResponseWithLayout) => {
         const code = req.query['code'];
         const state = req.query['state'];
+        const signatoryId = state.split('|')[0];
+        const letter = state.split('|')[1];
 
         const params = new URLSearchParams();
         params.append('client_id', config.getSiteSetting('clientId'));
@@ -59,11 +69,11 @@ export default (pool: mt.Pool, log): express.Router => {
             const accountId = items[0].account_id;
             const isModerator = items.filter(i => i.user_type === 'moderator').length > 0;
 
-            const signatory: Signatory = await <Promise<Signatory>>Signatory.find(state);
+            const signatory: Signatory = await <Promise<Signatory>>Signatory.find(signatoryId);
             const success = await signatory.update({se_acct_id: accountId, is_moderator: isModerator});
 
             if (success) {
-                res.redirect('/');
+                res.redirect(letter === 'main' ? '/' : '/lavender');
             }
             else {
                 error(req, res, 'You have already signed this letter.', pool);

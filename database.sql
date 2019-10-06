@@ -25,6 +25,7 @@ create table if not exists `users` (
 
 create table if not exists `signatories` (
     `id` bigint primary key auto_increment,
+    `letter` varchar(10) not null default 'main',
     `se_acct_id` bigint,
     `display_name` varchar(255),
     `is_moderator` tinyint(1) not null default 0,

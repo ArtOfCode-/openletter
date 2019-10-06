@@ -2,6 +2,8 @@
     <form method="POST" action="/sign">
         <h1>Add your voice</h1>
         <p>If you support the sentiments we've expressed in this letter, you can sign it too to demonstrate your support.</p>
+
+        <input type="hidden" name="letter" value="<%= letter %>" />
     
         <div class="form-group">
             <label for="display-name">Display name<span class="text-danger">*</span></label>
