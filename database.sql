@@ -33,7 +33,8 @@ create table if not exists `signatories` (
     `created_at` datetime not null default current_timestamp,
     `updated_at` datetime not null default current_timestamp,
 
-    constraint unique_signatories_se_acct_id unique (`se_acct_id`),
+    constraint unique_signatories_se_acct_id unique (`se_acct_id`, `letter`),
+    index index_signatories_on_letter (`letter`),
     index index_signatories_on_se_acct_id (`se_acct_id`),
     index index_signatories_on_display_name (`display_name`)
 ) character set utf8mb4 collate utf8mb4_unicode_ci;

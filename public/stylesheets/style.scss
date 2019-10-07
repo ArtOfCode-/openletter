@@ -151,19 +151,19 @@ section.signatories {
     max-height: 25em;
     overflow-y: scroll;
     border-bottom: 1px solid #DDD;
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: 600px) {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 840px) {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: 1080px) {
         grid-template-columns: repeat(5, 1fr);
     }
 
-    @media screen and (min-width: 1378px) {
+    @media screen and (min-width: 1480px) {
         grid-template-columns: repeat(6, 1fr);
     }
 
