@@ -80,7 +80,7 @@ export default (pool: mt.Pool, log): express.Router => {
             const success = await signatory.update({se_acct_id: accountId, is_moderator: isModerator});
 
             if (success) {
-                res.redirect(letter === 'main' ? '/' : '/lavender');
+                res.redirect(letter === 'main' ? '/' : `/${letter}`);
             }
             else {
                 error(req, res, 'You have already signed this letter.', pool);
