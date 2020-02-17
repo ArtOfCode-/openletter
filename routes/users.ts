@@ -104,14 +104,14 @@ export default (pool: mt.Pool, log): express.Router => { // eslint-disable-line 
   });
 
   router.get('/:userId/edit', async (req: express.Request, res: ResponseWithLayout, next: Function) => {
-    const targetUser = await User.find(req.params['userId']);
+    const targetUser = await User.find(parseInt(req.params['userId'], 10));
     await authOrNext((user: User) => user['id'].toString() === req.params['userId'].toString(), (user: User) => {
       render(req, res, 'users/edit', {errors: [], user: targetUser}, {pool});
     }, {req, res, next, pool});
   });
 
   router.post('/:userId/edit', async (req: express.Request, res: ResponseWithLayout, next: Function) => {
-    const targetUser: User = await <Promise<User>>User.find(req.params['userId']);
+    const targetUser: User = await <Promise<User>>User.find(parseInt(req.params['userId'], 10));
     await authOrNext((user: User) => user['id'].toString() === req.params['userId'].toString(), async (currentUser: User) => {
       const {errors, username, email, password, first_name, last_name, phone, current_password}: any = parameters(req, {
         username: { required: true },
