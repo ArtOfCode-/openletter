@@ -1,4 +1,3 @@
-const scrypt = require('scrypt');
 const aes = require('aes-js');
 
 import {queries} from './query_helpers';
@@ -10,7 +9,7 @@ import { BaseModel } from './models/base';
 import { ResponseWithLayout } from './definitions';
 
 // Calculating params here means slightly better performance later.
-const scryptParams: object = scrypt.paramsSync(0.5);
+// const scryptParams: object = scrypt.paramsSync(0.5);
 
 // Likewise, caching this means we don't have to fetch it every time.
 let secretKeyBuffer: Buffer = null;
@@ -43,17 +42,17 @@ export const getSecretKey = async (pool: mt.Pool): Promise<Buffer> => {
       else {
         // No database copy - we actually have to calculate :(
         try {
-          const key = await scrypt.kdf(config.secretKey, scryptParams);
-          const insertData: any =
-            await queries(pool, [], `INSERT INTO metadata (name, val) VALUES ('secret_key', '${key.toString('hex')}');`);
-          const {err: insertErr} = insertData;
-          if (insertErr) {
-            reject(insertErr);
-          }
-          else {
-            secretKeyBuffer = key;
-            resolve(key);
-          }
+          //const key; // = await scrypt.kdf(config.secretKey, scryptParams);
+          //const insertData: any =
+          //  await queries(pool, [], `INSERT INTO metadata (name, val) VALUES ('secret_key', '${key.toString('hex')}');`);
+          // const {err: insertErr} = insertData;
+          // if (insertErr) {
+          //  reject(insertErr);
+          //}
+          //else {
+            //secretKeyBuffer = key;
+            //resolve(key);
+          //}
         }
         catch (e) {
           reject(e);
@@ -72,8 +71,8 @@ export const hashPassword = async (password: string): Promise<string> => {
   return new Promise<string>(async (resolve, reject) => {
     try {
       // Currently SHA-256 and PKCS HMAC - covers one-way hash and message authentication.
-      const hash = await scrypt.kdf(password, scryptParams);
-      resolve(hash.toString('hex'));
+      //const hash = await scrypt.kdf(password, scryptParams);
+      // resolve(hash.toString('hex'));
     }
     catch (err) {
       reject(err);
@@ -90,8 +89,8 @@ export const hashPassword = async (password: string): Promise<string> => {
 export const verifyPassword = async (hashed: string, plain: string): Promise<string> => {
   return new Promise<string>(async (resolve, reject) => {
     try {
-      const result = await scrypt.verifyKdf(Buffer.from(hashed, 'hex'), plain);
-      resolve(result);
+      // const result = await scrypt.verifyKdf(Buffer.from(hashed, 'hex'), plain);
+      // resolve(result);
     }
     catch (err) {
       reject(err);

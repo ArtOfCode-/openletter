@@ -312,6 +312,7 @@ export class BaseModel {
     const {err} = data[0];
 
     if (err) {
+      console.error(err);
       debug(err);
       return false;
     }
@@ -354,6 +355,7 @@ export class BaseModel {
         `UPDATE ${this.tableName} SET ${params} WHERE id = ?;`);
       const {err} = data[0];
       if (err) {
+        console.error(err);
         resolve(false);
       }
       else {
