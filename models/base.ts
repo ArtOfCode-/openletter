@@ -1,7 +1,7 @@
 const createDebug = require('debug');
 
-import {query} from '../query_helpers';
-import {QueryIntermediate} from './query_intermediate';
+import { query } from '../query_helpers';
+import { QueryIntermediate } from './query_intermediate';
 import * as mt from 'mysql';
 
 const debug = createDebug('app:models:base');
@@ -86,7 +86,7 @@ export class BaseModel {
     params.push(ids.length);
     const data = await query(BaseModel.pool, [params],
       `DELETE FROM ${this.tableName} WHERE id IN ${values} LIMIT ?;`);
-    const {err} = data[0];
+    const { err } = data[0];
     return !err;
   }
 
@@ -98,7 +98,7 @@ export class BaseModel {
    *              a page.
    * @returns {BaseModel} so that you can continue chaining methods on the end of it.
    */
-  static page(page: number, per_page: number, order: {field?: string, direction: 'ASC' | 'DESC'} = {direction: 'ASC'}): typeof BaseModel {
+  static page(page: number, per_page: number, order: { field?: string, direction: 'ASC' | 'DESC' } = { direction: 'ASC' }): typeof BaseModel {
     order.field = order.field || 'id';
     const offset = (page - 1) * per_page;
     if (this.queryBuilder) {
@@ -142,7 +142,7 @@ export class BaseModel {
    * @param joiner (optional, default AND) the SQL keyword to join conditions with (AND, OR, etc)
    * @returns {BaseModel} itself so that you can continue chaining methods on the end of it.
    */
-  static where(conditions: object | string, {limit, joiner = 'AND'}: {limit?: number, joiner?: string} = {}): typeof BaseModel {
+  static where(conditions: object | string, { limit, joiner = 'AND' }: { limit?: number, joiner?: string } = {}): typeof BaseModel {
     if (this.queryBuilder) {
       this.queryBuilder = this.queryBuilder.where(conditions, ` ${joiner} `).limit(limit);
     }
@@ -170,12 +170,12 @@ export class BaseModel {
    * @param joinType the type of join to use - INNER, LEFT, RIGHT, OUTER etc
    * @returns {BaseModel} itself so that you can continue chaining methods on the end of it.
    */
-  static join(toTable: string, sourceColumn: string | string[], targetColumn: string | string[], {as = null, joinType = null}: {as?: string, joinType?: string} = {}): typeof BaseModel {
+  static join(toTable: string, sourceColumn: string | string[], targetColumn: string | string[], { as = null, joinType = null }: { as?: string, joinType?: string } = {}): typeof BaseModel {
     if (this.queryBuilder) {
-      this.queryBuilder = this.queryBuilder.join(toTable, sourceColumn, targetColumn, {as, joinType});
+      this.queryBuilder = this.queryBuilder.join(toTable, sourceColumn, targetColumn, { as, joinType });
     }
     else {
-      this.queryBuilder = new QueryIntermediate(this).join(toTable, sourceColumn, targetColumn, {as, joinType});
+      this.queryBuilder = new QueryIntermediate(this).join(toTable, sourceColumn, targetColumn, { as, joinType });
     }
     return this;
   }
@@ -245,7 +245,7 @@ export class BaseModel {
    * @returns {BaseModel?} a single model instance or null
    */
   static async find(id: number): Promise<BaseModel | null> {
-    const result = await this.findBy({id});
+    const result = await this.findBy({ id });
     return result;
   }
 
@@ -309,10 +309,9 @@ export class BaseModel {
     const values = objectMap(this.attribs, (k, v) => v);
     const params = new Array(values.length).fill('?').join(', ');
     const data = await query(BaseModel.pool, [values], `INSERT INTO ${this.tableName} (${names}) VALUES (${params});`);
-    const {err} = data[0];
+    const { err } = data[0];
 
     if (err) {
-      console.error(err);
       debug(err);
       return false;
     }
@@ -353,7 +352,7 @@ export class BaseModel {
       values.push(this.attribs['id']);
       const data = await query(BaseModel.pool, [values],
         `UPDATE ${this.tableName} SET ${params} WHERE id = ?;`);
-      const {err} = data[0];
+      const { err } = data[0];
       if (err) {
         console.error(err);
         resolve(false);
@@ -374,7 +373,7 @@ export class BaseModel {
     let data;
     if (this.attribs['id']) {
       data = await query(BaseModel.pool, [[this.attribs['id']]],
-      `DELETE FROM ${this.tableName} WHERE id = ? LIMIT 1;`);
+        `DELETE FROM ${this.tableName} WHERE id = ? LIMIT 1;`);
     }
     else {
       const where = [];
@@ -387,7 +386,7 @@ export class BaseModel {
       const sql = `DELETE FROM ${this.tableName} WHERE ${whereClause} LIMIT 1;`;
       data = await query(BaseModel.pool, [values], sql);
     }
-    const {err} = data[0];
+    const { err } = data[0];
     if (err) {
       return false;
     }
